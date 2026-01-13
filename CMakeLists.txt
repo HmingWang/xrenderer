@@ -32,6 +32,7 @@ add_subdirectory(glslang)
 aux_source_directory(. SRC)
 add_executable(${NAME} ${SRC})
 target_compile_definitions(${NAME} PRIVATE _CRT_SECURE_NO_WARNINGS)
+target_compile_definitions(${NAME} PRIVATE VK_USE_PLATFORM_WIN32_KHR)
 
 target_link_libraries(${NAME} PRIVATE Vulkan::Vulkan glslang glslang-default-resource-limits)
 target_link_libraries(${NAME} PUBLIC glfw)
