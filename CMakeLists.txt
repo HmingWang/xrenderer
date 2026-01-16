@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.22)
 
 set(NAME XRenderer)
 project(${NAME} VERSION 1.0 LANGUAGES CXX)
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 
 set(ENV{VULKAN_SDK} "D:\\VulkanSDK\\1.4.335.0")
 find_package(Vulkan REQUIRED)
@@ -31,6 +30,9 @@ add_subdirectory(glslang)
 
 aux_source_directory(. SRC)
 add_executable(${NAME} ${SRC})
+target_compile_features(${NAME} PRIVATE cxx_std_23)
+target_compile_options(${NAME} PRIVATE /utf-8)
+
 target_compile_definitions(${NAME} PRIVATE _CRT_SECURE_NO_WARNINGS)
 target_compile_definitions(${NAME} PRIVATE VK_USE_PLATFORM_WIN32_KHR)
 
