@@ -22,6 +22,8 @@ if(${Vulkan_VERSION} VERSION_LESS "1.3.256")
   return()
 endif()
 
+add_subdirectory(example)
+
 add_subdirectory( glfw )
 add_subdirectory(glm)
 
