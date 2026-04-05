@@ -497,6 +497,7 @@ namespace vk
       extensions.push_back( VK_KHR_ANDROID_SURFACE_EXTENSION_NAME );
 #elif defined( VK_USE_PLATFORM_METAL_EXT )
       extensions.push_back( VK_EXT_METAL_SURFACE_EXTENSION_NAME );
+      extensions.push_back( VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME );
 #elif defined( VK_USE_PLATFORM_VI_NN )
       extensions.push_back( VK_NN_VI_SURFACE_EXTENSION_NAME );
 #elif defined( VK_USE_PLATFORM_WAYLAND_KHR )

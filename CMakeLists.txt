@@ -41,7 +41,7 @@ if(MSVC)
 endif()
 
 if(APPLE)
-  target_compile_definitions(${NAME} PRIVATE VK_USE_PLATFORM_MACOS_MVK)
+  target_compile_definitions(${NAME} PRIVATE VK_USE_PLATFORM_METAL_EXT)
 elseif(UNIX)
   target_compile_definitions(${NAME} PRIVATE VK_USE_PLATFORM_XCB_KHR)
 elseif(WIN32)

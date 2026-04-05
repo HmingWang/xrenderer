@@ -777,7 +777,7 @@ vk::raii::Instance makeInstance(vk::raii::Context const &context,
                                 std::string const &engineName,
                                 std::vector<std::string> const &layers = {},
                                 std::vector<std::string> const &extensions = {},
-                                uint32_t apiVersion = VK_API_VERSION_1_3) {
+                                uint32_t apiVersion = VK_API_VERSION_1_4) {
   vk::ApplicationInfo applicationInfo(appName.c_str(), 1, engineName.c_str(), 1,
                                       apiVersion);
   std::vector<char const *> enabledLayers =
