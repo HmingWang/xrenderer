@@ -1,4 +1,3 @@
-#include <GLFW/glfw3.h> // Add this line for GLFW functions
 #include <format>
 #include <iostream>
 #include <print>
