@@ -1,24 +1,25 @@
-#include <iostream>
-#include <vulkan/vulkan_raii.hpp>
+#include <GLFW/glfw3.h> // Add this line for GLFW functions
 #include <format>
+#include <iostream>
 #include <print>
+#include <vulkan/vulkan_raii.hpp>
+#include "utils_raii.hpp"
 
-#include "string"
+auto main() -> int {
+  std::println("Using cpp version {}", __cplusplus);
 
-std::string AppName = "01_InitInstanceRAII";
-std::string EngineName = "Vulkan.hpp";
-
-auto main()->int{
-    std::println("Using cpp version {}", __cplusplus);
+  try {
 
     vk::raii::Context context;
-    // initialize the vk::ApplicationInfo structure
-    vk::ApplicationInfo applicationInfo( AppName.c_str(), 1, EngineName.c_str(), 1, VK_API_VERSION_1_1 );
+    vk::raii::Instance instance =vk::raii::su::makeInstance(context, "HelloVulkan", "Vulkan.hpp", {}, vk::su::getInstanceExtensions());
 
-    // initialize the vk::InstanceCreateInfo
-    vk::InstanceCreateInfo instanceCreateInfo( {}, &applicationInfo );
+  } catch (vk::SystemError &err) {
+    std::cerr << "vk::SystemError: " << err.what() << std::endl;
+    exit(-1);
+  } catch (std::exception &err) {
+    std::cerr << "std::exception: " << err.what() << std::endl;
+    exit(-1);
+  }
 
-    // create an Instance
-    vk::raii::Instance instance( context, instanceCreateInfo );
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
