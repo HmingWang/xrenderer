@@ -342,7 +342,8 @@ struct SurfaceData {
               vk::Extent2D const &extent_)
       : extent(extent_), window(vk::su::createWindow(windowName, extent)) {
     VkSurfaceKHR _surface;
-    VkResult err =glfwCreateWindowSurface(*instance, window.handle, nullptr, &_surface);
+    VkResult err =
+        glfwCreateWindowSurface(*instance, window.handle, nullptr, &_surface);
     if (err != VK_SUCCESS)
       throw std::runtime_error("Failed to create window!");
     surface = vk::raii::SurfaceKHR(instance, _surface);
@@ -801,8 +802,13 @@ vk::raii::Instance makeInstance(vk::raii::Context const &context,
                      vk::DebugUtilsMessengerCreateInfoEXT>
 #endif
       instanceCreateInfoChain = vk::su::makeInstanceCreateInfoChain(
-          {}, applicationInfo, enabledLayers, enabledExtensions);
-
+#if defined(VK_USE_PLATFORM_METAL_EXT)
+          vk::InstanceCreateFlagBits::eEnumeratePortabilityKHR
+#else
+          {}
+#endif
+          ,
+          applicationInfo, enabledLayers, enabledExtensions);
   return vk::raii::Instance(
       context, instanceCreateInfoChain.get<vk::InstanceCreateInfo>());
 }
